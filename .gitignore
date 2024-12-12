@@ -3,14 +3,11 @@ ip-whitelist/
 
 # IntelliJ
 .idea/
-build/
 *.iml
 
 # Gradle
 .gradle/
-gradle/
-gradlew
-gradlew.bat
 
+# Build
 libs/
-
+build/
