@@ -5,9 +5,6 @@ import org.yaml.snakeyaml.Yaml
 
 import java.nio.charset.StandardCharsets
 
-// --
-// Building
-// --
 buildscript {
     repositories {
         mavenCentral()
@@ -20,19 +17,17 @@ buildscript {
 
 plugins {
     id 'java'
+    id 'eclipse'
     id 'idea'
 }
 
-// --
-// Variables
-// --
 version = '2.8.0'
 group = 'net.tcpshield.tcpshield'
-archivesBaseName = 'TCPShield'
 
-// --
-// Misc.
-// --
+base {
+    archivesName = 'TCPShield'
+}
+
 idea {
     module {
         downloadJavadoc = true
@@ -65,9 +60,6 @@ compileJava {
     options.encoding = 'UTF-8'
 }
 
-// --
-// Dependencies
-// --
 repositories {
     maven {
         url = 'https://repo1.maven.org/maven2/'
@@ -85,26 +77,17 @@ repositories {
         url = 'https://repo.papermc.io/repository/maven-public/'
     }
     maven {
-        url = "https://repo.opencollab.dev/maven-snapshots/"
+        url = 'https://repo.opencollab.dev/maven-snapshots/'
     }
 }
 
 dependencies {
-    // Bukkit
-    compileOnly group: 'com.comphenix.protocol', name: 'ProtocolLib', version: '5.1.0'
-
-    // Paper - 1.19.4 so we can bump from JDK 8 -> JDK 17, using 1.20.x as a dependency would require bumping from JDK 8 -> JDK 21
-    compileOnly group: 'io.papermc.paper', name: 'paper-api', version: '1.19.4-R0.1-SNAPSHOT'
-
-    // BungeeCord
-    compileOnly group: 'net.md-5', name: 'bungeecord-api', version: '1.14-SNAPSHOT'
-
-    // Velocity
-    compileOnly group: 'com.velocitypowered', name: 'velocity-api', version: '3.3.0-SNAPSHOT'
-
-    // Testing
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0-M1'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.0-M1'
+    compileOnly 'com.comphenix.protocol:ProtocolLib:5.1.0'
+    compileOnly 'io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT'
+    compileOnly 'net.md-5:bungeecord-api:1.14-SNAPSHOT'
+    compileOnly 'com.velocitypowered:velocity-api:3.3.0-SNAPSHOT'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0-M1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0-M1'
     compileOnly 'org.geysermc.floodgate:api:2.1.1-SNAPSHOT'
 }
 
@@ -112,9 +95,6 @@ processResources {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-// --
-// Build Tasks
-// --
 test {
     useJUnitPlatform()
 }
@@ -167,8 +147,8 @@ void updateJsons() {
                 }
             }
         }
-
     }
 }
 
 build.dependsOn updateVersion
+

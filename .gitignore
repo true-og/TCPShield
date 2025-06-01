@@ -5,6 +5,11 @@ ip-whitelist/
 .idea/
 *.iml
 
+# Eclipse
+.classpath
+.project
+.settings/
+
 # Gradle
 .gradle/
 
