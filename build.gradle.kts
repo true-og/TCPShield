@@ -69,7 +69,6 @@ repositories {
 dependencies {
     compileOnly(files("libs/ProtocolLib-5.0.jar")) // Import Legacy ProtocolLib API.
     compileOnly("io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT")
-    compileOnly("net.md-5:bungeecord-api:1.14-SNAPSHOT")
     compileOnly("com.velocitypowered:velocity-api:3.3.0-SNAPSHOT")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0-M1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0-M1")
