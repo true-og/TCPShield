@@ -57,9 +57,9 @@ public class PaperPlayer implements PlayerProvider {
 	@Override
 	public void disconnect() {
 		handshakeEvent.setCancelled(false); // Caused issues with newer versions of Paper (Thanks https://github.com/realDragonium)
-		// Keep the kick reason empty so Paper does not echo a plugin-defined failure
-		// message back into the console on rejected proxy-bypass handshakes.
-		handshakeEvent.setFailMessage("");
+		// Paper requires a non-empty fail message (Guava checkArgument), so use a single space
+		// to avoid the plugin echoing a visible kick reason back into the console.
+		handshakeEvent.setFailMessage(" ");
 		handshakeEvent.setFailed(true);
 	}
 
